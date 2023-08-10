@@ -33,12 +33,21 @@ const newTask = async (req, res) => {
 const getAllTasks = async (req, res) => {
   const { userId } = req.params;
   try {
-    const tasks = await TaskModel.find({ user: userId });
-    if (tasks.length === 0) {
+    const tasks = await TaskModel.find({ user: userId }).populate(
+      "UserModel"
+    );
+    if (!tasks) {
       return res.json({
         success: false,
-        message: "No tasks available ",
+        message: "No tasks found ",
+      });
+    }
+    if (tasks.length === 0) {
+      return res.json({
+        success: true,
+        message: "No tasks found for the user.",
         tasks: [],
+       
       });
     }
     return res.json({
