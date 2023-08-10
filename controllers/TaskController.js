@@ -36,7 +36,7 @@ const getAllTasks = async (req, res) => {
     const tasks = await TaskModel.find({ user: userId });
     if (tasks.length === 0) {
       return res.json({
-        success: true,
+        success: false,
         message: "No tasks available ",
         tasks: [],
       });
