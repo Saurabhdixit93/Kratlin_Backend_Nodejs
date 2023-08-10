@@ -58,6 +58,7 @@ const getAllTasks = async (req, res) => {
       tasks,
     });
   } catch (error) {
+    console.log(error);
     return res.json({
       message: "Internal Server Error !!",
       success: false,
