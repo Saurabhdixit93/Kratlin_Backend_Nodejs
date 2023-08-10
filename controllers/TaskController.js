@@ -35,9 +35,7 @@ const newTask = async (req, res) => {
 const getAllTasks = async (req, res) => {
   const { userId } = req.params;
   try {
-    const tasks = await TaskModel.find({ user: userId }).populate(
-      "UserModel"
-    );
+    const tasks = await TaskModel.find({ user: userId });
     if (!tasks) {
       return res.json({
         success: false,
