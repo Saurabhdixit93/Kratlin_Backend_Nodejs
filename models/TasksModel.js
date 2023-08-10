@@ -19,8 +19,9 @@ const taskSchema = new Schema(
       default: "pending",
     },
     user: {
-      type: Schema.Types.ObjectId,
-      ref: "UserModel",
+     type: Schema.Types.ObjectId,
+    ref: "UserModel",
+    require: true,
     },
   },
   { timestamps: true }
