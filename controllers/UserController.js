@@ -1,4 +1,4 @@
-const { default: generateJwtToken } = require("../middlewares/generateToken");
+const {generateJwtToken} = require("../middlewares/generateToken");
 const UserModel = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 
@@ -59,6 +59,8 @@ const newAccount = async (req, res) => {
     });
     // saaving details in db
     await newUser.save();
+    // Remove password from the user object
+    newUser.password = undefined;
     return res.json({
       success: true,
       message: "Account Created Successfully",
@@ -106,6 +108,7 @@ const logInUser = async (req, res) => {
       token: token,
     });
   } catch (error) {
+    console.log("Error in login",error);
     return res.json({
       message: "Internal Server Error !!",
       success: false,
