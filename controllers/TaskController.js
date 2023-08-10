@@ -17,10 +17,12 @@ const newTask = async (req, res) => {
       dueDate,
       user: userId,
     });
+     // Save the new task to the database
+    const savedTask = await newTask.save();
     return res.json({
       success: true,
       message: "Task Created",
-      task: newTask,
+      task: savedTask,
     });
   } catch (error) {
     return res.json({
