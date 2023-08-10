@@ -59,12 +59,10 @@ const newAccount = async (req, res) => {
     });
     // saaving details in db
     await newUser.save();
-    // Remove password from the user object
-    newUser.password = undefined;
     return res.json({
       success: true,
       message: "Account Created Successfully",
-      newUser,
+     
     });
   } catch (error) {
     return res.json({
